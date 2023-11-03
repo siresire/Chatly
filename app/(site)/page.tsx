@@ -32,7 +32,7 @@ export default function Home() {
             text-gray-900
           "
           >
-            Sign in to your account
+            Sign in to Chat.ly
         </h2>
           </div>
 
