@@ -77,8 +77,10 @@ const Form = () => {
           required 
           placeholder="Write a message"
         />
+        
         <button 
           type="submit" 
+          title="Send Message"
           className="
             rounded-full 
             p-2 
