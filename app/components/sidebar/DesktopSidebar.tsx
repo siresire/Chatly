@@ -2,16 +2,14 @@
 
 import DesktopItem from "./DesktopItem";
 import useRoutes from "@/app/hooks/useRoutes";
+import SettingsModal from "./SettingsModal";
 import { useState } from "react";
-import { User } from "@prisma/client";
 import Avatar from "../Avatar";
-
-
+import { User } from "@prisma/client";
 
 interface DesktopSidebarProps {
   currentUser: User
 }
-
 
 const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
   currentUser
@@ -21,9 +19,11 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
 
   console.log({ currentUser, }, 'TEST')
 
-  return (  
+  return ( 
     <>
-    <div className="
+      <SettingsModal currentUser={currentUser} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <div className="
+        bg-opacity
         hidden 
         lg:fixed 
         lg:inset-y-0 
@@ -32,13 +32,13 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         lg:w-20 
         xl:px-6
         lg:overflow-y-auto 
-        lg:bg-white 
+        lg:bg-white/[0.5]
         lg:border-r-[1px]
         lg:pb-4
         lg:flex
         lg:flex-col
         justify-between
-      "> 
+      ">
         <nav className="mt-4 flex flex-col justify-between">
           <ul role="list" className="flex flex-col items-center space-y-1">
             {routes.map((item) => (
@@ -61,10 +61,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
             <Avatar user={currentUser} />
           </div>
         </nav>
-
-    </div>
-
-
+      </div>
     </>
    );
 }
