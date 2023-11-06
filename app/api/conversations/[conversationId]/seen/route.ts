@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import getCurrentUser from "@/app/actions/getCurrentUser";
-// import { pusherServer } from '@/app/libs/pusher'
+import { pusherServer } from '@/app/libs/pusher'
 import prisma from "@/app/libs/prismadb";
 
 interface IParams {
@@ -13,13 +13,12 @@ export async function POST(
   { params }: { params: IParams }
 ) {
   try {
-    // fetching current user
     const currentUser = await getCurrentUser();
     const {
       conversationId
     } = params;
 
-    // if no current user, return unauthorized
+    
     if (!currentUser?.id || !currentUser?.email) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
@@ -27,7 +26,7 @@ export async function POST(
     // Find existing conversation
     const conversation = await prisma.conversation.findUnique({
       where: {
-        id: conversationId,  // used the conversationId to find the last conversation
+        id: conversationId,
       },
       include: {
         messages: {
@@ -53,7 +52,7 @@ export async function POST(
     // Update seen of last message
     const updatedMessage = await prisma.message.update({
       where: {
-        id: lastMessage.id // used the lastMessage.id to update the last message
+        id: lastMessage.id
       },
       include: {
         sender: true,
@@ -69,10 +68,10 @@ export async function POST(
     });
 
     // Update all connections with new seen
-    // await pusherServer.trigger(currentUser.email, 'conversation:update', {
-    //   id: conversationId,
-    //   messages: [updatedMessage]
-    // });
+    await pusherServer.trigger(currentUser.email, 'conversation:update', {
+      id: conversationId,
+      messages: [updatedMessage]
+    });
 
     // If user has already seen the message, no need to go further
     if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
@@ -80,7 +79,7 @@ export async function POST(
     }
 
     // Update last message seen
-    // await pusherServer.trigger(conversationId!, 'message:update', updatedMessage);
+    await pusherServer.trigger(conversationId!, 'message:update', updatedMessage);
 
     return new NextResponse('Success');
   } catch (error) {
@@ -88,3 +87,5 @@ export async function POST(
     return new NextResponse('Error', { status: 500 });
   }
 }
+
+
