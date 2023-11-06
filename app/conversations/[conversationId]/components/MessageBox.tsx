@@ -53,6 +53,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
           </div>
         </div>
         <div className={message}>   
+        {/* image dispaly */}
           {/* <ImageModal src={data.image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} /> */}
           {data.image ? (
             <Image
@@ -73,6 +74,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             <div>{data.body}</div>
           )}
         </div>
+        {/* the seen fuctionality workking very fine */}
         {isLast && isOwn && seenList.length > 0 && (
           <div 
             className="
