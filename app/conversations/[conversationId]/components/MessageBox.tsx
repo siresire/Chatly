@@ -52,7 +52,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({
             {format(new Date(data.createdAt), 'p')}
           </div>
         </div>
-        <div className={message}>
+        <div className={message}>   
           {/* <ImageModal src={data.image} isOpen={imageModalOpen} onClose={() => setImageModalOpen(false)} /> */}
           {data.image ? (
             <Image
