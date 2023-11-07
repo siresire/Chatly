@@ -9,6 +9,7 @@ export default async function ConversationsLayout({
   children: React.ReactNode,
 }) {
   const conversations = await getConversations();
+  // geting uses for the group conversation
   const users = await getUsers();
 
   return (
@@ -16,6 +17,7 @@ export default async function ConversationsLayout({
     <Sidebar>
       <div className="h-full">
         <ConversationList 
+        // passing the users list in the list
           users={users} 
           title="Messages"  
           initialItems={conversations}

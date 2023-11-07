@@ -68,7 +68,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
     <Modal isOpen={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-12">
-          <div className="border-b border-gray-900/10 pb-12">
+        <div className="border-b border-gray-900/10 pb-12" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
             <h2 
               className="
                 text-base 
@@ -113,19 +113,21 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
                     src={image || currentUser?.image || '/images/placeholder.jpg'}
                     alt="Avatar"
                   />
+                  
                   <CldUploadButton 
                     options={{ maxFiles: 1 }} 
                     onUpload={handleUpload} 
-                    uploadPreset="chatly"
-                  >
+                    uploadPreset="chatly" >
                     <Button
                       disabled={isLoading}
                       secondary
                       type="button"
                     >
-                      Change
+                      Change P.Pic
                     </Button>
                   </CldUploadButton>
+
+                  
                 </div>
               </div>
             </div>

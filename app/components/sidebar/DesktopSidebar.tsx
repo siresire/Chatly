@@ -23,7 +23,6 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
     <>
       <SettingsModal currentUser={currentUser} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <div className="
-        bg-opacity
         hidden 
         lg:fixed 
         lg:inset-y-0 
@@ -32,13 +31,14 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
         lg:w-20 
         xl:px-6
         lg:overflow-y-auto 
-        lg:bg-white/[0.5]
         lg:border-r-[1px]
         lg:pb-4
         lg:flex
         lg:flex-col
         justify-between
-      ">
+        bg-white bg-opacity-50  // Adding translucent background
+">
+
         <nav className="mt-4 flex flex-col justify-between">
           <ul role="list" className="flex flex-col items-center space-y-1">
             {routes.map((item) => (
