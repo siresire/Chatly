@@ -5,10 +5,10 @@ import { Dialog } from '@headlessui/react'
 import { FiAlertTriangle } from 'react-icons/fi'
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import Modal from '@/app/components/modals/Modal';
 import Button from '@/app/components/Button';
 import useConversation from '@/app/hooks/useConversation';
 import { toast } from 'react-hot-toast';
-import Modal from '@/app/components/Modal';
 
 interface ConfirmModalProps {
   isOpen?: boolean;

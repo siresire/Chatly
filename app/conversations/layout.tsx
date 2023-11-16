@@ -9,17 +9,15 @@ export default async function ConversationsLayout({
   children: React.ReactNode,
 }) {
   const conversations = await getConversations();
-  // geting uses for the group conversation
   const users = await getUsers();
 
   return (
-
+    // @ts-expect-error Server Component
     <Sidebar>
       <div className="h-full">
         <ConversationList 
-        // passing the users list in the list
           users={users} 
-          title="Messages"  
+          title="Messages" 
           initialItems={conversations}
         />
         {children}

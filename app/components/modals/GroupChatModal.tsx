@@ -1,7 +1,6 @@
 'use client';
 
 import axios from 'axios';
-import './styles.css';
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
 import { 
@@ -40,7 +39,6 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
       errors,
     }
   } = useForm<FieldValues>({
-    // destructuring the values
     defaultValues: {
       name: '',
       members: []
@@ -66,7 +64,7 @@ const GroupChatModal: React.FC<GroupChatModalProps> = ({
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-     <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="space-y-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 

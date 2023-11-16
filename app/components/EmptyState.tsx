@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NoChat from "../Illustration/NoChat"
 const EmptyState = () => {
     return ( 
       <div 
@@ -16,12 +17,14 @@ const EmptyState = () => {
         "
       >
         <div className="text-center items-center flex flex-col">
-        <Image
+          < NoChat />
+
+        {/* <Image
           height="250"
           width="250"
           className="mx-auto w-auto"
           src="/images/chatt.png"
-          alt="Logo"  />
+          alt="Logo"  /> */}
           <h3 className="mt-2 text-2xl font-semibold text-gray-900">
             Select a chat or start a new conversation
           </h3>

@@ -20,7 +20,6 @@ const Body: React.FC<BodyProps> = ({ initialMessages = [] }) => {
   const { conversationId } = useConversation();
 
   useEffect(() => {
-    // seen last message property
     axios.post(`/api/conversations/${conversationId}/seen`);
   }, [conversationId]);
 
