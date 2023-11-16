@@ -2,7 +2,7 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import { NextResponse } from "next/server";
 
 import prisma from "@/app/libs/prismadb";
-
+import { pusherServer } from "@/app/libs/pusher";
 
 export async function POST(
   request: Request,
@@ -41,21 +41,22 @@ export async function POST(
             ]
           }
         },
-        // populating users by displayName na images in prisma using include 
         include: {
           users: true,
         }
       });
 
        // Update all connections with new conversation
-      
+      newConversation.users.forEach((user) => {
+        if (user.email) {
+          pusherServer.trigger(user.email, 'conversation:new', newConversation);
+        }
+      });
 
       return NextResponse.json(newConversation);
     }
 
-    // fetching one to one conversation
-
-    const existingConversations = await prisma.conversation.findMany({ 
+    const existingConversations = await prisma.conversation.findMany({
       where: {
         OR: [
           {
@@ -72,7 +73,6 @@ export async function POST(
       }
     });
 
-    // one to one conversation 
     const singleConversation = existingConversations[0];
 
     if (singleConversation) {
@@ -98,7 +98,11 @@ export async function POST(
     });
 
     // Update all connections with new conversation
-   
+    newConversation.users.map((user) => {
+      if (user.email) {
+        pusherServer.trigger(user.email, 'conversation:new', newConversation);
+      }
+    });
 
     return NextResponse.json(newConversation)
   } catch (error) {
