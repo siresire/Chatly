@@ -12,12 +12,15 @@ import AuthSocialButton from './AuthSocialButton';
 import Button from "@/app/components/Button";
 import { toast } from "react-hot-toast";
 
+//  posibility of usestate fuctionality to toggle between login and register
 type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
+  //to store and manage data that can change over time
   const [variant, setVariant] = useState<Variant>('LOGIN');
+  // to disabble buttons and input after clicking them when is loading
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -26,7 +29,9 @@ const AuthForm = () => {
     }
   }, [session?.status, router]);
 
+  //  login and register toggle fuctionality
   const toggleVariant = useCallback(() => {
+    // if variant is login then set variant to register else set variant to login
     if (variant === 'LOGIN') {
       setVariant('REGISTER');
     } else {
