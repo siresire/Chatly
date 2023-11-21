@@ -20,6 +20,7 @@ export async function POST(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    //  creating a new message
     const newMessage = await prisma.message.create({
       include: {
         seen: true,

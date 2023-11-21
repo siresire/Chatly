@@ -43,6 +43,7 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
       return false;
     }
 
+    // last seen array of the last message
     const seenArray = lastMessage.seen || [];
 
     if (!userEmail) {

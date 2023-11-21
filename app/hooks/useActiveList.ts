@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+// returns the state and actions to update the state
 
 interface ActiveListStore {
   members: string[];

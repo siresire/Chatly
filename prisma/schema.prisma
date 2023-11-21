@@ -36,7 +36,7 @@ model User {
   messages Message[]
 }
 
-// this is the model for the user session
+//model for the user session
 model Account {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId             String   @db.ObjectId
@@ -53,6 +53,7 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+// rules for the account model and the providerAccountId and provider must be unique
   @@unique([provider, providerAccountId])
 }
 
@@ -64,6 +65,7 @@ model Conversation {
   name String?
   isGroup Boolean?
   
+  // this is the relation between the conversation and the user
   messagesIds String[] @db.ObjectId
   messages Message[]
 

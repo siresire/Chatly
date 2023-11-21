@@ -60,7 +60,7 @@ const AuthForm = () => {
     setIsLoading(true);
   
     if (variant === 'REGISTER') {
-      // axios post request to register user
+      // axios post request to register user making HTTP requests in the app
       axios.post('/api/register', data)
       .then(() => signIn('credentials', {
         ...data,
@@ -76,9 +76,11 @@ const AuthForm = () => {
         }
       })
       .catch(() => toast.error('Something went wrong!'))
+      // set loading to false after login
       .finally(() => setIsLoading(false))
     }
 
+    // sign in with credentials and redirect to conversations page
     if (variant === 'LOGIN') {
       signIn('credentials', {
         ...data,

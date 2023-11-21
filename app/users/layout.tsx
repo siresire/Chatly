@@ -13,6 +13,7 @@ export default async function UsersLayout({
     // @ts-expect-error Server Component
     <Sidebar>
       <div className="h-full">
+        {/* fetching users directly from the database */}
         <UserList items={users} />
         {children}
       </div>

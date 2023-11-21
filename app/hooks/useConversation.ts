@@ -4,6 +4,8 @@ import { useMemo } from "react";
 const useConversation = () => {
   const params = useParams();
 
+
+  // useMemo involves caching the result of a function based on its arguments
   const conversationId = useMemo(() => {
     if (!params?.conversationId) {
       return '';

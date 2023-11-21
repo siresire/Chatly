@@ -13,6 +13,8 @@ export async function POST(
     password
   } = body;
 
+
+  //  hashed password stored in the database
   const hashedPassword = await bcrypt.hash(password, 12);
 
   const user = await prisma.user.create({
