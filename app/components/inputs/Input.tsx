@@ -1,5 +1,6 @@
 'use client';
 
+//manage dynamic class names in a more readable and concise manner
 import clsx from "clsx";
 import { 
   FieldErrors, 
@@ -7,6 +8,7 @@ import {
   UseFormRegister 
 } from "react-hook-form";
 
+// handle form submission and validation process when user submits the form 
 interface InputProps {
   label: string;
   id: string;
@@ -16,7 +18,7 @@ interface InputProps {
   errors: FieldErrors
   disabled?: boolean;
 }
-
+// this is used for the login and register forms
 const Input: React.FC<InputProps> = ({
   label,
   id,

@@ -39,6 +39,8 @@ const AuthForm = () => {
     }
   }, [variant]);
 
+
+  // react hook form to handle form validation and submission process when user submits the form
   const {
     register,
     handleSubmit,
@@ -53,10 +55,12 @@ const AuthForm = () => {
     }
   });
 
+  // submit handler to handle form submission
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
   
     if (variant === 'REGISTER') {
+      // axios post request to register user
       axios.post('/api/register', data)
       .then(() => signIn('credentials', {
         ...data,
@@ -86,17 +90,21 @@ const AuthForm = () => {
         }
 
         if (callback?.ok) {
+          // redirect to conversations page after login success
           router.push('/conversations')
          
         }
       })
+      // set loading to false after login
       .finally(() => setIsLoading(false))
     }
   }
 
+  //  social login and register functionality for github and google accounts 
   const socialAction = (action: string) => {
     setIsLoading(true);
 
+    // sign in with social media provider and redirect to conversations page
     signIn(action, { redirect: false })
       .then((callback) => {
         if (callback?.error) {
@@ -119,14 +127,16 @@ const AuthForm = () => {
           py-8
           shadow
           sm:rounded-lg
-          sm:px-10
+          sm:px-10 
         "
       >
         <form 
           className="space-y-6" 
+          // handle form submission 
           onSubmit={handleSubmit(onSubmit)}
         >
           {variant === 'REGISTER' && (
+            // input for name field when user is registering from input component
             <Input
               disabled={isLoading}
               register={register}
