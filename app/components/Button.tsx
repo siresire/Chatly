@@ -1,5 +1,8 @@
 import clsx from "clsx";
 
+
+// used for the Button component of the app component that is used for the login and register 
+// forms in the app component
 interface ButtonProps {
   type?: "button" | "submit" | "reset" | undefined;
   fullWidth?: boolean;
@@ -36,6 +39,7 @@ const Button: React.FC<ButtonProps> = ({
         focus-visible:outline-2 
         focus-visible:outline-offset-2 
         `,
+        // if the button is disabled, then the opacity is 50% and the cursor is default by clsx 
         disabled && 'opacity-50 cursor-default',
         fullWidth && 'w-full',
         secondary ? 'text-gray-900' : 'text-white',

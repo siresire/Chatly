@@ -146,6 +146,7 @@ const AuthForm = () => {
               label="Name"
             />
           )}
+          
           <Input 
             disabled={isLoading}
             register={register}
@@ -166,6 +167,7 @@ const AuthForm = () => {
           />
           <div>
             <Button disabled={isLoading} fullWidth type="submit">
+              {/* login sign if varient for ...  */}
               {variant === 'LOGIN' ? 'Sign in' : 'Register'}
             </Button>
           </div>
@@ -212,7 +214,7 @@ const AuthForm = () => {
           "
         >
           <div>
-            {variant === 'LOGIN' ? 'New to Messenger?' : 'Already have an account?'} 
+            {variant === 'LOGIN' ? 'New to Chatl.y?' : 'Already have an account?'} 
           </div>
           <div 
             onClick={toggleVariant} 

@@ -7,11 +7,14 @@ interface AvatarGroupProps {
   users?: User[];
 };
 
+// 
 const AvatarGroup: React.FC<AvatarGroupProps> = ({ 
   users = [] 
 }) => {
+  // slice the users array to get only the first 3 users
   const slicedUsers = users.slice(0, 3);
   
+  // map the position of the users
   const positionMap = {
     0: 'top-0 left-[12px]',
     1: 'bottom-0',
