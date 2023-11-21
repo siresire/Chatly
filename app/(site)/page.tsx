@@ -36,7 +36,7 @@ export default function Home() {
         </h2>
           </div>
 
-          {/* Authform */}
+          {/* Authform component for authentication */}
           <AuthForm />      
         
       
