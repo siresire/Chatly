@@ -1,10 +1,11 @@
 import { IconType } from "react-icons";
 
+
 interface AuthSocialButtonProps {
   icon: IconType
   onClick: () => void;
 }
-
+//  used for the social buttons in the login and register forms
 const AuthSocialButton: React.FC<AuthSocialButtonProps> = ({ 
   icon: Icon,
   onClick,
